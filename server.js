@@ -1,13 +1,35 @@
-const http = require('http');
-const server = http.createServer((request,response) => {
-	response.setHeader('Content-Type','application/json');
-	const user = {
-		name:'tim',
-		hobby:'football',
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
+
+
+app.get('/profile',(request,response) => {
+	const user =  {
+		name:"sally",
+		hobby:"football",
 	}
-	console.log('headers', request.header);
-	console.log('url',request.url);
-	response.end(JSON.stringify(user));
+	response.send(JSON.stringify(user));
 })
 
-server.listen(3000);
+//app.use(bodyParser.urlencoded({extended:false}));
+
+app.post('/home',(request,response) => {
+	
+	console.log(request.body);
+	const user =  {
+		name:"sally",
+		hobby:"football",
+	}
+	response.send(JSON.stringify(user));
+})
+
+
+app.get('/',(request,response) => {
+	const user =  {
+		name:"sally",
+		hobby:"football",
+	}
+	response.send(JSON.stringify(user));
+})
+
+app.listen(3000);
